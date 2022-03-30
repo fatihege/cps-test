@@ -33,6 +33,12 @@ html, body {
     height: 100%;
 }
 
+.hidden, .hidden * {
+    opacity: 0;
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
 .container {
     overflow: hidden;
     width: 100%;
@@ -200,6 +206,46 @@ body.dark .main-section .theme-toggle .theme-toggle-btn svg path {
     opacity: 0.8;
 }
 
+.main-section .restart {
+    position: absolute;
+    bottom: 12rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.2s ease-out;
+}
+
+.main-section .restart .restart-btn {
+    width: 2.3rem;
+    height: 2.3rem;
+    max-width: 2.3rem;
+    max-height: 2.3rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #151515;
+    pointer-events: all;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+    transition-property: background-color, box-shadow, transform;
+}
+
+.main-section .restart .restart-btn:hover {
+    box-shadow: 0 0.5rem 2rem rgba(14, 14, 14, 0.71);
+    transform: translateY(-0.2rem);
+}
+
+.main-section .restart .restart-btn svg {
+    width: 100%;
+    height: auto;
+    transition: fill 0.3s ease-out;
+    fill: #ffffff;
+}
+
 .main-section .copyright {
     position: absolute;
     bottom: 0;
@@ -219,8 +265,11 @@ body.dark .main-section .theme-toggle .theme-toggle-btn svg path {
     opacity: 0.1;
     line-height: 1;
     bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
     color: #000000;
     transition: color 0.3s ease-out;
+    min-width: max-content;
 }
 
 .main-section .copyright .author {

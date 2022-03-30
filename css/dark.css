@@ -59,6 +59,18 @@ body.dark .main-section .score {
     color: #e0e0e0;
 }
 
+body.dark .main-section .restart .restart-btn {
+    background-color: #e8e8e8;
+}
+
+body.dark .main-section .restart .restart-btn:hover {
+    box-shadow: 0 0.5rem 2rem rgba(164, 164, 164, 0.32);
+}
+
+body.dark .main-section .restart .restart-btn svg {
+    fill: #282828 !important;
+}
+
 body.dark .main-section .copyright .project {
     color: #8f8f8f;
 }

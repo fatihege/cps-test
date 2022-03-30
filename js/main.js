@@ -5,6 +5,7 @@ const cpsLog = document.querySelector('.left-side .cps-log ul');
 const timerElem = document.querySelector('.main-section .timer');
 const toggleThemeBtn = document.querySelector('.main-section .theme-toggle .theme-toggle-btn');
 const scoreElem = document.querySelector('.main-section .score span.score-text');
+const restartBtn = document.querySelector('.main-section .restart .restart-btn');
 
 highCPSElem.innerText = (localStorage.getItem('high_cps') || 0).toString();
 highScoreElem.innerText = (localStorage.getItem('high_score') || 0).toString();
@@ -94,7 +95,11 @@ const init = () => {
     timerElem.innerText = conf.time;
 
     addEventListener('click', (e) => {
-        if (e.target.classList.contains('theme-toggle-btn')) return;
+        if (
+            (e.target.classList.contains(toggleThemeBtn.classList[0])) ||
+            (e.target.classList.contains(restartBtn.classList[0]))
+        ) return;
+
         if (!finished) {
             conf.score++;
             conf.tempScore++;
@@ -119,6 +124,7 @@ const init = () => {
                         window.cpsInterval = null;
                         finished = true;
                         timerElem.innerText = 0;
+                        restartBtn.parentElement.classList.remove('hidden');
                         clearInterval(window.cpsInterval);
                     }
                 }
@@ -133,3 +139,4 @@ const init = () => {
 
 addEventListener('load', init);
 toggleThemeBtn.addEventListener('click', () => setTheme());
+restartBtn.addEventListener('click', () => location.reload());

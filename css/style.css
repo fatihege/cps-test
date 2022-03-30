@@ -231,7 +231,7 @@ body.dark .main-section .theme-toggle .theme-toggle-btn svg path {
     pointer-events: all;
     cursor: pointer;
     transition: 0.3s ease-out;
-    transition-property: background-color, box-shadow, transform;
+    transition-property: opacity, background-color, box-shadow, transform;
 }
 
 .main-section .restart .restart-btn:hover {

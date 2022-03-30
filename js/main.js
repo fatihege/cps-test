@@ -1,11 +1,13 @@
 const currentCPS = document.querySelector('.left-side .current.score-block span.score');
-const highCPS = document.querySelector('.left-side .high.score-block span.score');
+const highCPSElem = document.querySelector('.left-side .high.score-block span.cps span.score');
+const highScoreElem = document.querySelector('.left-side .high.score-block span.point span.score');
 const cpsLog = document.querySelector('.left-side .cps-log ul');
 const timerElem = document.querySelector('.main-section .timer');
 const toggleThemeBtn = document.querySelector('.main-section .theme-toggle .theme-toggle-btn');
 const scoreElem = document.querySelector('.main-section .score span.score-text');
 
-highCPS.innerText = (localStorage.getItem('high_cps') || 0).toString();
+highCPSElem.innerText = (localStorage.getItem('high_cps') || 0).toString();
+highScoreElem.innerText = (localStorage.getItem('high_score') || 0).toString();
 
 const changeTheme = () => {
     if (localStorage.getItem('dark_mode') === '1') {
@@ -48,27 +50,33 @@ const addCPSLog = (cps) => {
     cpsLog.appendChild(li);
 }
 
-const updateHighScore = (cps) => {
-    const highScore = localStorage.getItem('high_cps') ? parseFloat(localStorage.getItem('high_cps')) : 0;
-    if (cps > highScore) {
+const updateHighScore = (cps, score) => {
+    let highCPS = localStorage.getItem('high_cps') ? parseFloat(localStorage.getItem('high_cps')) : 0;
+    let highScore = localStorage.getItem('high_score') ? parseFloat(localStorage.getItem('high_score')) : 0;
+    if (cps > highCPS) {
         localStorage.setItem('high_cps', cps);
-        highCPS.innerText = cps;
+        highCPSElem.innerText = cps;
+    }
+    if (score > highScore) {
+        localStorage.setItem('high_score', score);
+        highScoreElem.innerText = score;
     }
 }
 
 const updateScores = (conf) => {
     if (conf) {
         currentCPS.innerText = conf.cps;
-        updateHighScore(conf.cps);
+        updateHighScore(conf.cps, conf.score);
     } else {
         currentCPS.innerText = 0;
-        updateHighScore(0);
+        updateHighScore(0, 0);
     }
 }
 
 const init = () => {
     updateScores();
-    highCPS.innerText = (localStorage.getItem('high_cps') || 0).toString();
+    highCPSElem.innerText = (localStorage.getItem('high_cps') || 0).toString();
+    highScoreElem.innerText = (localStorage.getItem('high_score') || 0).toString();
 
     let conf = {
         initTime: 5,
@@ -77,7 +85,6 @@ const init = () => {
         score: 0,
         tempScore: 0,
         cps: 0,
-        cpm: 0,
         scoreLog: [],
     }
     conf.time = conf.initTime;
@@ -97,7 +104,6 @@ const init = () => {
         if (window.cpsInterval === null && !finished) {
             window.cpsInterval = setInterval(() => {
                 conf.cps = conf.score / conf.initTime;
-                conf.cpm = conf.cps * 60;
                 updateScores(conf);
 
                 if (conf.counter > 0 && conf.counter % 1000 === 0) {

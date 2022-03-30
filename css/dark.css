@@ -18,6 +18,10 @@ body.dark .left-side .score-block span.small {
     font-weight: 400;
 }
 
+body.dark .left-side .score-block span.slash-sep {
+    font-weight: 100;
+}
+
 body.dark .left-side .separator {
     background-color: #3f3f3f;
 }

@@ -68,7 +68,7 @@ body.dark .main-section .restart .restart-btn:hover {
 }
 
 body.dark .main-section .restart .restart-btn svg {
-    fill: #282828 !important;
+    fill: #282828;
 }
 
 body.dark .main-section .copyright .project {

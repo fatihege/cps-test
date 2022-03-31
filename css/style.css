@@ -178,9 +178,9 @@ html, body {
     opacity: 1;
 }
 
-body.dark .main-section .theme-toggle .theme-toggle-btn svg path {
+.main-section .theme-toggle .theme-toggle-btn svg path {
     fill: #ffffff;
-    transition: fill 0.3s ease-out !important;
+    transition: fill 0.3s ease-out;
 }
 
 .main-section .score {

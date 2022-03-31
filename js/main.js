@@ -7,8 +7,8 @@ const toggleThemeBtn = document.querySelector('.main-section .theme-toggle .them
 const scoreElem = document.querySelector('.main-section .score span.score-text');
 const restartBtn = document.querySelector('.main-section .restart .restart-btn');
 const faviconImages = {
-    dark: 'img/favicon-dark_128x128.png',
-    light: 'img/favicon-light_128x128.png',
+    dark: 'https://fatihege.github.io/cps-test/img/favicon-dark_128x128.png',
+    light: 'https://fatihege.github.io/cps-test/img/favicon-light_128x128.png',
 }
 
 highCPSElem.innerText = (localStorage.getItem('high_cps') || 0).toString();

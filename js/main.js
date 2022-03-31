@@ -6,6 +6,10 @@ const timerElem = document.querySelector('.main-section .timer');
 const toggleThemeBtn = document.querySelector('.main-section .theme-toggle .theme-toggle-btn');
 const scoreElem = document.querySelector('.main-section .score span.score-text');
 const restartBtn = document.querySelector('.main-section .restart .restart-btn');
+const faviconImages = {
+    dark: 'img/favicon-dark_128x128.png',
+    light: 'img/favicon-light_128x128.png',
+}
 
 highCPSElem.innerText = (localStorage.getItem('high_cps') || 0).toString();
 highScoreElem.innerText = (localStorage.getItem('high_score') || 0).toString();
@@ -74,7 +78,15 @@ const updateScores = (conf) => {
     }
 }
 
+const setFavicon = () => {
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const faviconLink = document.querySelector('head link[rel="shortcut icon"]');
+    if (isDarkMode) faviconLink.href = faviconImages.light;
+    else faviconLink.href = faviconImages.dark;
+}
+
 const init = () => {
+    setFavicon();
     updateScores();
     highCPSElem.innerText = (localStorage.getItem('high_cps') || 0).toString();
     highScoreElem.innerText = (localStorage.getItem('high_score') || 0).toString();

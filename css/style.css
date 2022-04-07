@@ -46,6 +46,7 @@ html, body {
     background-color: #dcdcdc;
     padding: 2rem 3rem;
     transition: background-color 0.3s ease-out;
+    pointer-events: all;
 }
 
 .left-side .score-block span {
@@ -201,7 +202,6 @@ html, body {
 .history-side ul li {
     display: block;
     width: 100%;
-    pointer-events: all;
     position: relative;
     margin-top: 1rem;
     padding-left: 1rem;

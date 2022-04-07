@@ -167,11 +167,15 @@ const init = () => {
     timerElem.innerText = conf.time;
 
     addEventListener('click', (e) => {
+        console.log(e.target)
         if (
-            (e.target.classList.contains(showHistoryBtn.classList[0])) ||
-            (e.target.classList.contains(closeHistoryBtn.classList[0])) ||
-            (e.target.classList.contains(toggleThemeBtn.classList[0])) ||
-            (e.target.classList.contains(restartBtn.classList[0])) ||
+            (e.target.classList.value === showHistoryBtn.classList.value) ||
+            (e.target.classList.value === closeHistoryBtn.classList.value) ||
+            (e.target.classList.value === toggleThemeBtn.classList.value) ||
+            (e.target.classList.value === restartBtn.classList.value) ||
+            (e.target.classList.value === cpsHistoryList.parentElement.classList.value) ||
+            (e.target.classList.value === document.querySelector('.left-side').classList.value) ||
+            (e.target.tagName === cpsHistoryList.tagName) ||
             (e.target.tagName === 'A')
         ) return;
 
@@ -208,7 +212,7 @@ const init = () => {
                 conf.counter += 10;
             }, 10);
         }
-    });
+    }, true);
 
     addEventListener('keydown', (e) => {
         if (e.keyCode === 88) setTheme();

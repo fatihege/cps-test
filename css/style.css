@@ -218,15 +218,15 @@ html, body {
 }
 
 .main-section .restart .restart-btn {
-    width: 2.3rem;
-    height: 2.3rem;
-    max-width: 2.3rem;
-    max-height: 2.3rem;
+    width: 4rem;
+    height: 4rem;
+    max-width: 4rem;
+    max-height: 4rem;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem;
+    padding: 1rem;
     background-color: #151515;
     pointer-events: all;
     cursor: pointer;

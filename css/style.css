@@ -336,7 +336,8 @@ html, body {
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    transition: bottom 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    transition-property: bottom, opacity;
     pointer-events: all;
     cursor: pointer;
     opacity: 0.4;
@@ -344,6 +345,7 @@ html, body {
 
 .main-section .restart.hidden {
     bottom: -110vw;
+    opacity: 0;
 }
 
 .main-section .restart svg {
@@ -364,11 +366,13 @@ html, body {
     flex-direction: column;
     text-align: center;
     width: 100%;
-    transition: bottom 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    transition-property: bottom, opacity;
 }
 
 .main-section .copyright.hidden {
     bottom: -100%;
+    opacity: 0;
 }
 
 .main-section .copyright .project {

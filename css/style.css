@@ -47,9 +47,9 @@ html, body {
 }
 
 .left-side {
-    min-width: 320px;
-    max-width: 320px;
-    background-color: #a7a7a765;
+    min-width: 20rem;
+    max-width: 20rem;
+    background-color: #dcdcdc;
     padding: 2rem 3rem;
     transition: background-color 0.3s ease-out;
 }
@@ -75,6 +75,30 @@ html, body {
 .left-side .score-block span.slash-sep {
     font-weight: 500;
     opacity: 0.8;
+}
+
+.left-side .history {
+    margin-top: 0.7rem;
+}
+
+.left-side .history .history-btn {
+    font-size: 0.8rem;
+    font-weight: 400;
+    background-color: #252525;
+    color: #ffffff;
+    cursor: pointer;
+    pointer-events: all;
+    width: max-content;
+    position: relative;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    transition: opacity 0.2s, background-color 0.3s, color 0.3s;
+    transition-timing-function: ease-out;
+    opacity: 1;
+}
+
+.left-side .history .history-btn:hover {
+    opacity: 0.84;
 }
 
 .left-side .separator {
@@ -127,6 +151,107 @@ html, body {
 
 .left-side .cps-log ul li span {
     font-size: 1.2rem;
+}
+
+.history-side {
+    min-width: 20rem;
+    max-width: 20rem;
+    height: 100vh;
+    background-color: #dcdcdc;
+    padding: 2rem 3rem;
+    transition: 0.3s ease-out;
+    transition-property: background-color, left, opacity;
+    position: absolute;
+    opacity: 0;
+    left: -20rem;
+    pointer-events: all;
+}
+
+.history-side.active {
+    left: 0;
+    opacity: 1;
+}
+
+.history-side .close {
+    position: absolute;
+    top: 2rem;
+    right: 1.5rem;
+}
+
+.history-side .close .close-btn {
+    cursor: pointer;
+    pointer-events: all;
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+.history-side .close .close-btn svg g path {
+    fill: #1a1a1a;
+    transition: fill 0.3s ease-out;
+}
+
+.history-side .title {
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: color 0.3s ease-out;
+}
+
+.history-side ul {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    max-height: 90%;
+    overflow: auto;
+    pointer-events: all;
+}
+
+.history-side ul li {
+    display: block;
+    width: 100%;
+    pointer-events: all;
+    position: relative;
+    margin-top: 1rem;
+    padding-left: 1rem;
+}
+
+.history-side ul li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: rgba(12, 12, 12, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border-radius: 100%;
+    transition: background-color 0.3s ease-out;
+}
+
+.history-side ul li > span {
+    display: inline-block;
+    border-right: 1px solid #9f9f9f;
+    transition: border-right-color 0.3s ease-out;
+    padding: 0 0.4rem;
+    white-space: revert;
+}
+
+.history-side ul li > span:last-child {
+    border-right: none;
+}
+
+.history-side ul li > span span {
+    color: #1a1a1a;
+    transition: color 0.3s ease-out;
+}
+
+.history-side ul li > span span.value {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.history-side ul li > span span.key {
+    font-weight: 500;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 .main-section {

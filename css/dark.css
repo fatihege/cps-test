@@ -7,7 +7,7 @@ body.dark ::-webkit-scrollbar-thumb:hover {
 }
 
 body.dark .left-side {
-    background-color: rgb(33, 33, 33);
+    background-color: #212121;
 }
 
 body.dark .left-side .score-block span {
@@ -20,6 +20,12 @@ body.dark .left-side .score-block span.small {
 
 body.dark .left-side .score-block span.slash-sep {
     font-weight: 100;
+}
+
+body.dark .left-side .history .history-btn {
+    font-weight: 500;
+    background-color: #d9d9d9;
+    color: #0a0a0a;
 }
 
 body.dark .left-side .separator {
@@ -36,6 +42,35 @@ body.dark .left-side .cps-log ul li {
 
 body.dark .left-side .cps-log ul li::before {
     background-color: rgba(250, 250, 250, 0.4);
+}
+
+body.dark .history-side {
+    background-color: #212121;
+}
+
+body.dark .history-side .close .close-btn svg g path {
+    fill: #fafafa;
+}
+
+body.dark .history-side .title {
+    color: #fafafa;
+    font-weight: 400;
+}
+
+body.dark .history-side ul li::before {
+    background-color: rgba(250, 250, 250, 0.7);
+}
+
+body.dark .history-side ul li > span {
+    border-right-color: #383838;
+}
+
+body.dark .history-side ul li > span span {
+    color: #fafafa;
+}
+
+body.dark .history-side ul li > span span.key {
+    font-weight: 400;
 }
 
 body.dark .main-section {

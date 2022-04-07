@@ -1,6 +1,9 @@
 const currentCPS = document.querySelector('.left-side .current.score-block span.score');
 const highCPSElem = document.querySelector('.left-side .high.score-block span.cps span.score');
 const highScoreElem = document.querySelector('.left-side .high.score-block span.point span.score');
+const showHistoryBtn = document.querySelector('.left-side .history .history-btn');
+const closeHistoryBtn = document.querySelector('.history-side .close .close-btn');
+const cpsHistoryList = document.querySelector('.history-side ul');
 const cpsLog = document.querySelector('.left-side .cps-log ul');
 const timerElem = document.querySelector('.main-section .timer');
 const toggleThemeBtn = document.querySelector('.main-section .theme-toggle .theme-toggle-btn');
@@ -9,6 +12,20 @@ const restartBtn = document.querySelector('.main-section .restart .restart-btn')
 const faviconImages = {
     dark: 'https://fatihege.github.io/cps-test/img/favicon-dark_128x128.png',
     light: 'https://fatihege.github.io/cps-test/img/favicon-light_128x128.png',
+}
+const months = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December',
 }
 
 const changeTheme = () => {
@@ -81,10 +98,51 @@ const setFavicon = () => {
     else faviconLink.href = faviconImages.dark;
 }
 
+const getCPSHistory = () => {
+    let cpsHistory = (JSON.parse(localStorage.getItem('cps_history')) || []);
+    if (cpsHistory.length > 150) cpsHistory = cpsHistory.reverse().slice(0, 150).reverse();
+    return cpsHistory;
+}
+
+const addCPSHistoryItem = (item) => {
+    item.date = new Date(item.date);
+    const formattedDate = `${item.date.getDate()} ${months[item.date.getMonth()]} ${item.date.getFullYear()} ${
+        item.date.getHours()}:${item.date.getMinutes()}:${item.date.getSeconds()}`;
+    let li = document.createElement('li');
+    li.title = formattedDate;
+    li.innerHTML = `
+        <span class="cps">
+            <span class="value">${item.cps}</span>
+            <span class="key">CPS</span>
+        </span><span class="score">
+            <span class="value">${item.score}</span>
+            <span class="key">score</span>
+        </span>`;
+    cpsHistoryList.appendChild(li);
+}
+
+const updateCPSHistory = (cps, score) => {
+    const cpsHistory = getCPSHistory();
+    cpsHistory.push({
+        cps,
+        score,
+        date: new Date()
+    });
+
+    localStorage.setItem('cps_history', JSON.stringify(cpsHistory));
+    updateCPSHistoryList();
+}
+
+const updateCPSHistoryList = () => {
+    cpsHistoryList.innerHTML = '';
+    getCPSHistory().reverse().forEach((item) => addCPSHistoryItem(item));
+}
+
 const init = () => {
     setFavicon();
     changeTheme();
     updateScores();
+    updateCPSHistoryList();
     highCPSElem.innerText = (localStorage.getItem('high_cps') || 0).toString();
     highScoreElem.innerText = (localStorage.getItem('high_score') || 0).toString();
 
@@ -104,6 +162,8 @@ const init = () => {
 
     addEventListener('click', (e) => {
         if (
+            (e.target.classList.contains(showHistoryBtn.classList[0])) ||
+            (e.target.classList.contains(closeHistoryBtn.classList[0])) ||
             (e.target.classList.contains(toggleThemeBtn.classList[0])) ||
             (e.target.classList.contains(restartBtn.classList[0])) ||
             (e.target.tagName === 'A')
@@ -129,12 +189,13 @@ const init = () => {
                         timerElem.innerText = conf.time;
                     } else {
                         if (conf.tempScore >= 0) addCPSLog(conf.tempScore);
+                        updateCPSHistory(conf.cps, conf.score);
                         conf.tempScore = -1;
-                        cpsInterval = null;
                         finished = true;
                         timerElem.innerText = 0;
                         restartBtn.parentElement.classList.remove('hidden');
                         clearInterval(cpsInterval);
+                        cpsInterval = null;
                     }
                 }
 
@@ -147,5 +208,7 @@ const init = () => {
 }
 
 addEventListener('load', () => init());
+showHistoryBtn.addEventListener('click', () => cpsHistoryList.parentElement.classList.add('active'));
+closeHistoryBtn.addEventListener('click', () => cpsHistoryList.parentElement.classList.remove('active'));
 toggleThemeBtn.addEventListener('click', () => setTheme());
 restartBtn.addEventListener('click', () => location.reload());

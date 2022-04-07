@@ -204,7 +204,10 @@ const init = () => {
         }
     });
 
-    addEventListener('keydown', (e) => (e.keyCode === 88) ? setTheme() : false);
+    addEventListener('keydown', (e) => {
+        if (e.keyCode === 88) setTheme();
+        if (e.keyCode === 72) cpsHistoryList.parentElement.classList.toggle('active');
+    });
 }
 
 addEventListener('load', () => init());

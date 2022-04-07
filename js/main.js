@@ -122,7 +122,7 @@ const addCPSHistoryItem = (item) => {
             <span class="key">CPS</span>
         </span><span class="score">
             <span class="value">${item.score}</span>
-            <span class="key">score</span>
+            <span class="key">point</span>
         </span>`;
     cpsHistoryList.appendChild(li);
 }

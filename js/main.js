@@ -167,7 +167,6 @@ const init = () => {
     timerElem.innerText = conf.time;
 
     addEventListener('click', (e) => {
-        console.log(e.target)
         if (
             (e.target.classList.value === showHistoryBtn.classList.value) ||
             (e.target.classList.value === closeHistoryBtn.classList.value) ||

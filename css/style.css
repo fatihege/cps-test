@@ -33,12 +33,6 @@ html, body {
     height: 100%;
 }
 
-.hidden, .hidden * {
-    opacity: 0;
-    pointer-events: none !important;
-    cursor: default !important;
-}
-
 .container {
     overflow: hidden;
     width: 100%;
@@ -332,43 +326,33 @@ html, body {
 }
 
 .main-section .restart {
+    background-color: rgba(138, 138, 138, 0.5);
+    width: 110vw;
+    height: 110vw;
+    border-radius: 100%;
     position: absolute;
-    bottom: 12rem;
+    bottom: -90vw;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    align-items: center;
-    transition: opacity 0.2s ease-out;
-}
-
-.main-section .restart .restart-btn {
-    width: 4rem;
-    height: 4rem;
-    max-width: 4rem;
-    max-height: 4rem;
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    background-color: #151515;
+    transition: bottom 0.4s ease-in-out;
     pointer-events: all;
     cursor: pointer;
-    transition: 0.3s ease-out;
-    transition-property: opacity, background-color, box-shadow, transform;
+    opacity: 0.4;
 }
 
-.main-section .restart .restart-btn:hover {
-    box-shadow: 0 0.5rem 2rem rgba(14, 14, 14, 0.71);
-    transform: translateY(-0.2rem);
+.main-section .restart.hidden {
+    bottom: -110vw;
 }
 
-.main-section .restart .restart-btn svg {
-    width: 100%;
+.main-section .restart svg {
+    width: 14rem;
     height: auto;
     transition: fill 0.3s ease-out;
-    fill: #ffffff;
+    fill: #0c0c0c;
+    position: absolute;
+    top: 3rem;
 }
 
 .main-section .copyright {
@@ -380,6 +364,11 @@ html, body {
     flex-direction: column;
     text-align: center;
     width: 100%;
+    transition: bottom 0.4s ease-in-out;
+}
+
+.main-section .copyright.hidden {
+    bottom: -100%;
 }
 
 .main-section .copyright .project {

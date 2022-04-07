@@ -8,7 +8,8 @@ const cpsLog = document.querySelector('.left-side .cps-log ul');
 const timerElem = document.querySelector('.main-section .timer');
 const toggleThemeBtn = document.querySelector('.main-section .theme-toggle .theme-toggle-btn');
 const scoreElem = document.querySelector('.main-section .score span.score-text');
-const restartBtn = document.querySelector('.main-section .restart .restart-btn');
+const restartBtn = document.querySelector('.main-section .restart');
+const copyrightContainer = document.querySelector('.main-section .copyright');
 const faviconImages = {
     dark: 'https://fatihege.github.io/cps-test/img/favicon-dark_128x128.png',
     light: 'https://fatihege.github.io/cps-test/img/favicon-light_128x128.png',
@@ -56,6 +57,11 @@ const setTheme = (t) => {
     }
 
     changeTheme();
+}
+
+const showRestart = () => {
+    restartBtn.classList.remove('hidden');
+    setTimeout(() => copyrightContainer.classList.add('hidden'), 250);
 }
 
 const addCPSLog = (cps) => {
@@ -193,7 +199,7 @@ const init = () => {
                         conf.tempScore = -1;
                         finished = true;
                         timerElem.innerText = 0;
-                        restartBtn.parentElement.classList.remove('hidden');
+                        showRestart();
                         clearInterval(cpsInterval);
                         cpsInterval = null;
                     }
